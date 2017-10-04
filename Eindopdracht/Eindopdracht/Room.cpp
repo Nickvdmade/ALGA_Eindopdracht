@@ -1,11 +1,6 @@
 #include "Room.h"
 
-Room::Room()
-{
-	
-}
-
-void Room::FillRoom(char roomType)
+Room::Room(char roomType)
 {
 	type = roomType;
 	weight = rand() % 9 + 1;
@@ -18,7 +13,7 @@ void Room::FillRoom(char roomType)
 void Room::Print()
 {
 	if (type == 'S' || type == 'E')
-		cout << type << " ";
+		cout << type;
 	else
-		cout << weight << " ";
+		cout << weight;
 }

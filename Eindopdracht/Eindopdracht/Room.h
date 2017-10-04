@@ -1,19 +1,17 @@
 #pragma once
-#include <iostream>
+#include "Piece.h"
 
 using namespace std;
 
-class Room
+class Room : public Piece
 {
 private:
 	int weight;
 	char type;
-	bool north, east, west, south;
 	bool visited;
 	bool shortPath;
 
 public:
-	Room();
-	void FillRoom(char);
+	Room(char);
 	void Print();
 };
