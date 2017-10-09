@@ -18,6 +18,9 @@ Dungeon::~Dungeon()
 			delete rooms[x][y];
 		}
 	}
+	for (int y = 0; y < ySize; y++)
+		delete rooms[y];
+	//delete rooms;
 }
 
 void Dungeon::FillDungeon()
