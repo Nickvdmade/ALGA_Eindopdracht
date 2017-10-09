@@ -11,7 +11,11 @@ private:
 public:
 	Dungeon(int, int);
 	~Dungeon();
-	void FillDungeon();
-	void AddNeighbours();
-	void Print();
+	void FillDungeon() const;
+	void AddNeighbours() const;
+	void SwapStart(int, int);
+	Room* FindStart();
+	void SwapEnd(int, int);
+	Room* FindEnd();
+	void Print() const;
 };

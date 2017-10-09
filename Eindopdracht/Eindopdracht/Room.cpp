@@ -3,7 +3,7 @@
 Room::Room(char roomType)
 {
 	type = roomType;
-	weight = rand() % 9 + 1;
+	weight = rand() % 10;
 	if (roomType == 'S' || roomType == 'E')
 	{
 		weight = 0;
@@ -18,7 +18,27 @@ void Room::AddNeighbours(Room* neighbours[4])
 	west = neighbours[3];
 }
 
-void Room::Print()
+char Room::GetType()
+{
+	return type;
+}
+
+void Room::SetType(char roomType)
+{
+	type = roomType;
+}
+
+int Room::GetWeight()
+{
+	return weight;
+}
+
+void Room::SetWeight(int roomWeight)
+{
+	weight = roomWeight;
+}
+
+void Room::Print() const
 {
 	if (type == 'S' || type == 'E')
 		cout << type;
@@ -26,7 +46,7 @@ void Room::Print()
 		cout << weight;
 }
 
-void Room::PrintRight()
+void Room::PrintRight() const
 {
 		if (east != nullptr)
 		cout << '-';
@@ -34,7 +54,7 @@ void Room::PrintRight()
 		cout << '~';
 }
 
-void Room::PrintDown()
+void Room::PrintDown() const
 {
 	if (south != nullptr)
 		cout << '|';

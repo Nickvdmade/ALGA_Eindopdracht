@@ -12,23 +12,17 @@ Dungeon::Dungeon(int y, int x)
 Dungeon::~Dungeon()
 {
 	for (int y = 0; y < ySize; y++)
-	{
 		for (int x = 0; x < xSize; x++)
-		{
 			delete rooms[x][y];
-		}
-	}
 	for (int y = 0; y < ySize; y++)
 		delete rooms[y];
-	//delete rooms;
+	delete rooms;
 }
 
-void Dungeon::FillDungeon()
+void Dungeon::FillDungeon() const
 {
 	for (int y = 0; y < ySize; y++)
-	{
 		for (int x = 0; x < xSize; x++)
-		{
 			if (y == 0 && x == 0)
 				rooms[y][x] = new Room('S');
 			else
@@ -38,15 +32,13 @@ void Dungeon::FillDungeon()
 				else
 					rooms[y][x] = new Room('D');
 			}
-		}
-	}
 	AddNeighbours();
 }
-void Dungeon::AddNeighbours()
+
+void Dungeon::AddNeighbours() const
 {
 	Room* neighbours[4];
 	for (int y = 0; y < ySize; y++)
-	{
 		for (int x = 0; x < xSize; x++)
 		{
 			if (y == 0)
@@ -87,10 +79,47 @@ void Dungeon::AddNeighbours()
 			}
 			rooms[y][x]->AddNeighbours(neighbours);
 		}
-	}
 }
 
-void Dungeon::Print()
+void Dungeon::SwapStart(int y, int x)
+{
+	int weight = rooms[y][x]->GetWeight();
+	int type = rooms[y][x]->GetType();
+	Room* start = FindStart();
+	rooms[y][x]->SetWeight(0);
+	rooms[y][x]->SetType('S');
+	start->SetWeight(weight);
+	start->SetType(type);
+}
+
+Room* Dungeon::FindStart()
+{
+	for (int y = 0; y < ySize; y++)
+		for (int x = 0; x < xSize; x++)
+			if (rooms[y][x]->GetType() == 'S')
+				return rooms[y][x];
+}
+
+void Dungeon::SwapEnd(int y, int x)
+{
+	int weight = rooms[y][x]->GetWeight();
+	int type = rooms[y][x]->GetType();
+	Room* end = FindEnd();
+	rooms[y][x]->SetWeight(0);
+	rooms[y][x]->SetType('E');
+	end->SetWeight(weight);
+	end->SetType(type);
+}
+
+Room* Dungeon::FindEnd()
+{
+	for (int y = 0; y < ySize; y++)
+		for (int x = 0; x < xSize; x++)
+			if (rooms[y][x]->GetType() == 'E')
+				return rooms[y][x];
+}
+
+void Dungeon::Print() const
 {
 	for (int y = 0; y < ySize * 2; y++)
 	{

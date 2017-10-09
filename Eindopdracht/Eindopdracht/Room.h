@@ -19,7 +19,11 @@ private:
 public:
 	Room(char);
 	void AddNeighbours(Room* neighbours[4]);
-	void Print();
-	void PrintRight();
-	void PrintDown();
+	char GetType();
+	void SetType(char);
+	int GetWeight();
+	void SetWeight(int);
+	void Print() const;
+	void PrintRight() const;
+	void PrintDown() const;
 };
