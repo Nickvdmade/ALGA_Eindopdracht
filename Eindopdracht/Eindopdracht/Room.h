@@ -1,8 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <stdio>
-#include <stdlib>
 
 using namespace std;
 
@@ -20,6 +18,8 @@ private:
 
 public:
 	Room(char);
+	void AddNeighbours(Room* neighbours[4]);
+	void Print();
 	void PrintRight();
 	void PrintDown();
 };

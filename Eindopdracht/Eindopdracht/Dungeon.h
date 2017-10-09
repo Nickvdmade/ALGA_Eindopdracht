@@ -6,10 +6,12 @@ class Dungeon
 {
 private:
 	Room ***rooms;
-	int xSize, ySize;
+	int ySize, xSize;
 
 public:
 	Dungeon(int, int);
+	~Dungeon();
 	void FillDungeon();
+	void AddNeighbours();
 	void Print();
 };

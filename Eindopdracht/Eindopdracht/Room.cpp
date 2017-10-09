@@ -10,13 +10,25 @@ Room::Room(char roomType)
 	}
 }
 
-void Room::PrintRight()
+void Room::AddNeighbours(Room* neighbours[4])
+{
+	north = neighbours[0];
+	east = neighbours[1];
+	south = neighbours[2];
+	west = neighbours[3];
+}
+
+void Room::Print()
 {
 	if (type == 'S' || type == 'E')
 		cout << type;
 	else
 		cout << weight;
-	if (east != null)
+}
+
+void Room::PrintRight()
+{
+		if (east != nullptr)
 		cout << '-';
 	else
 		cout << '~';
@@ -24,7 +36,7 @@ void Room::PrintRight()
 
 void Room::PrintDown()
 {
-	if (south != null)
+	if (south != nullptr)
 		cout << '|';
 	else
 		cout << ':';
