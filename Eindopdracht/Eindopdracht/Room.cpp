@@ -17,22 +17,16 @@ void Room::PrintRight()
 	else
 		cout << weight;
 	if (east != null)
-		if (eastCorridor)
-			cout << '-';
-		else
-			cout << '~';
+		cout << '-';
 	else
-		cout << ' ';
+		cout << '~';
 }
 
 void Room::PrintDown()
 {
 	if (south != null)
-		if (southCorridor)
-			cout << '|';
-		else
-			cout << ':';
+		cout << '|';
 	else
-		cout << ' ';
+		cout << ':';
 	cout << ' ';
 }

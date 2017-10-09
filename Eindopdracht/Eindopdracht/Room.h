@@ -17,10 +17,6 @@ private:
 	Room* east;
 	Room* south;
 	Room* west;
-	bool northCorridor;
-	bool eastCorridor;
-	bool southCorridor;
-	bool westCorridor;
 
 public:
 	Room(char);
