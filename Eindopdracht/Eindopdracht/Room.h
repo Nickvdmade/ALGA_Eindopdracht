@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <Windows.h>
+
+#include "ColourCodes.h"
 
 using namespace std;
 
@@ -23,6 +26,8 @@ public:
 	void SetType(char);
 	int GetWeight();
 	void SetWeight(int);
+	void Visited();
+	void ShortPath();
 	void Print() const;
 	void PrintRight() const;
 	void PrintDown() const;

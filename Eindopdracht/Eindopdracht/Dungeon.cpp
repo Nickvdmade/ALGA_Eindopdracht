@@ -24,11 +24,17 @@ void Dungeon::FillDungeon() const
 	for (int y = 0; y < ySize; y++)
 		for (int x = 0; x < xSize; x++)
 			if (y == 0 && x == 0)
+			{
 				rooms[y][x] = new Room('S');
+				rooms[y][x]->Visited();
+			}
 			else
 			{
 				if (y == ySize - 1 && x == xSize - 1)
+				{
 					rooms[y][x] = new Room('E');
+					rooms[y][x]->ShortPath();
+				}
 				else
 					rooms[y][x] = new Room('D');
 			}

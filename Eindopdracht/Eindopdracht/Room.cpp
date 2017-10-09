@@ -38,12 +38,35 @@ void Room::SetWeight(int roomWeight)
 	weight = roomWeight;
 }
 
+void Room::Visited()
+{
+	visited = true;
+}
+
+void Room::ShortPath()
+{
+	shortPath = true;
+}
+
 void Room::Print() const
 {
+	HANDLE hConsole;
+	int colour = white;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (visited && shortPath)
+		colour = purple;
+	else if (visited)
+		colour = blue;
+	else if (shortPath)
+		colour = red;
+	
+	SetConsoleTextAttribute(hConsole, colour);
 	if (type == 'S' || type == 'E')
 		cout << type;
 	else
 		cout << weight;
+	colour = white;
+	SetConsoleTextAttribute(hConsole, colour);
 }
 
 void Room::PrintRight() const
