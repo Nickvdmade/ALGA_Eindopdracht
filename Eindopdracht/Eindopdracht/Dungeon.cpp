@@ -129,6 +129,7 @@ void Dungeon::Print() const
 {
 	for (int y = 0; y < ySize * 2; y++)
 	{
+		cout << "\t";
 		for (int x = 0; x < xSize; x++)
 		{
 			if (y % 2 == 0)

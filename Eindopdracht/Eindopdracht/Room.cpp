@@ -71,7 +71,7 @@ void Room::Print() const
 
 void Room::PrintRight() const
 {
-		if (east != nullptr)
+	if (east != nullptr)
 		cout << '-';
 	else
 		cout << '~';
