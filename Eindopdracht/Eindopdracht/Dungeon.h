@@ -1,12 +1,11 @@
 #pragma once
-#include "Piece.h"
+
 #include "Room.h"
-#include "Corridor.h"
 
 class Dungeon
 {
 private:
-	Piece ***rooms;
+	Room ***rooms;
 	int xSize, ySize;
 
 public:

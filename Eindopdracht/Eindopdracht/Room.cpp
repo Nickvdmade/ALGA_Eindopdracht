@@ -10,10 +10,29 @@ Room::Room(char roomType)
 	}
 }
 
-void Room::Print()
+void Room::PrintRight()
 {
 	if (type == 'S' || type == 'E')
 		cout << type;
 	else
 		cout << weight;
+	if (east != null)
+		if (eastCorridor)
+			cout << '-';
+		else
+			cout << '~';
+	else
+		cout << ' ';
+}
+
+void Room::PrintDown()
+{
+	if (south != null)
+		if (southCorridor)
+			cout << '|';
+		else
+			cout << ':';
+	else
+		cout << ' ';
+	cout << ' ';
 }

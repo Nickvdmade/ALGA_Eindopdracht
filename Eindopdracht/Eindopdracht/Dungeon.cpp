@@ -2,11 +2,11 @@
 
 Dungeon::Dungeon(int x, int y)
 {
-	xSize = x + x - 1;
-	ySize = y + y - 1;
-	rooms = new Piece**[x + x - 1];
+	xSize = x;
+	ySize = y;
+	rooms = new Room**[x];
 	for (int i = 0; i < xSize; i++)
-		rooms[i] = new Piece*[y + y - 1];
+		rooms[i] = new Room*[y];
 }
 
 void Dungeon::FillDungeon()
@@ -27,23 +27,20 @@ void Dungeon::FillDungeon()
 						rooms[x][y] = new Room('D');
 				}
 			}
-			else if (x % 2 == 0)
-				rooms[x][y] = new Corridor('H');
-			else if (y % 2 == 0)
-				rooms[x][y] = new Corridor('V');
-			else
-				rooms[x][y] = new Piece();
 		}
 	}
 }
 
 void Dungeon::Print()
 {
-	for (int x = 0; x < xSize; x++)
+	for (int x = 0; x < xSize * 2; x++)
 	{
 		for (int y = 0; y < ySize; y++)
 		{
-			rooms[x][y]->Print();
+			if (x % 2 == 0)
+				rooms[x / 2][y]->PrintRight();
+			else
+				rooms[x][y / 2]->PrintDown();
 		}
 		cout << endl;
 	}
