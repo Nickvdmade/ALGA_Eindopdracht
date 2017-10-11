@@ -2,8 +2,20 @@
 
 enum ColourCodes
 {
-	blue = 9,
-	red = 12,
-	purple = 13,
-	white = 15
+	black,
+	blue,
+	green,
+	lightBlue,
+	red,
+	purple,
+	yellow,
+	white,
+	gray,
+	bBlue,
+	bGreen,
+	bLightBlue,
+	bRed,
+	bPurple,
+	bYellow,
+	bWhite
 };

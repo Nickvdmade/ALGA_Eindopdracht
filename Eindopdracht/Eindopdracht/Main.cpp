@@ -5,19 +5,19 @@ void ShowUI(Dungeon* dungeon)
 	system("cls");
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	int colour = white;
+	int colour = bWhite;
 	SetConsoleTextAttribute(hConsole, colour);
 	cout << "Legend:" << endl;
-	colour = blue;
+	colour = bBlue;
 	SetConsoleTextAttribute(hConsole, colour);
 	cout << "- Blue room: Visited room" << endl;
-	colour = red;
+	colour = bRed;
 	SetConsoleTextAttribute(hConsole, colour);
 	cout << "- Red room: Room is part of shortest path" << endl;
-	colour = purple;
+	colour = bPurple;
 	SetConsoleTextAttribute(hConsole, colour);
 	cout << "- Purple room: Room is visited and part of shortest path" << endl;
-	colour = white;
+	colour = bWhite;
 	SetConsoleTextAttribute(hConsole, colour);
 	cout << "- White room: Normal room" << endl;
 	cout << endl;
@@ -37,27 +37,29 @@ void main()
 	dungeon->FillDungeon();
 	
 	string choice = "";
-	while (choice != "quit")
+	while (choice != "quit" && choice != "q")
 	{
 		ShowUI(dungeon);
 		getline(cin, choice);
-		if (choice == "talisman")
+		if (choice == "talisman" || choice == "t")
 		{
 			cout << "talisman used" << endl;
 		}
-		if (choice == "handgrenade")
+		else if (choice == "handgrenade" || choice == "h")
 		{
 			cout << "handgrenade used" << endl;
 		}
-		if (choice == "compass")
+		else if (choice == "compass" || choice == "c")
 		{
 			cout << "compass used" << endl;
 		}
-		if (choice != "quit")
+		else if(choice != "quit" && choice != "q")
 		{
-			cout << "press enter to continue";
-			getchar();
+			cout << "invalid input" << endl;
 		}
+		cout << "press enter to continue";
+		getchar();
+		
 	}
 
 	delete dungeon;

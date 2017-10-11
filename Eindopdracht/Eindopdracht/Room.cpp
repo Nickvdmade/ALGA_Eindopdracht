@@ -51,21 +51,21 @@ void Room::ShortPath()
 void Room::Print() const
 {
 	HANDLE hConsole;
-	int colour = white;
+	int colour = bWhite;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (visited && shortPath)
-		colour = purple;
+		colour = bPurple;
 	else if (visited)
-		colour = blue;
+		colour = bBlue;
 	else if (shortPath)
-		colour = red;
+		colour = bRed;
 	
 	SetConsoleTextAttribute(hConsole, colour);
 	if (type == 'S' || type == 'E')
 		cout << type;
 	else
 		cout << weight;
-	colour = white;
+	colour = bWhite;
 	SetConsoleTextAttribute(hConsole, colour);
 }
 
