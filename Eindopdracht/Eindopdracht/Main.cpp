@@ -34,7 +34,7 @@ void ShowUI(Dungeon* dungeon)
 
 void main()
 {
-	Dungeon* dungeon = new Dungeon(4,7);
+	Dungeon* dungeon = new Dungeon(8,8);
 	dungeon->FillDungeon();
 	
 	string choice = "";
@@ -45,9 +45,9 @@ void main()
 		if (choice == "talisman" || choice == "t")
 		{
 			cout << "talisman used" << endl;
-			dungeon->SwapEnd(4, 4);
 			BFS* bfs = new BFS();
-			bfs->BreathFirstSearch(dungeon);
+			bfs->BreathFirstSearch(0,7, dungeon);
+			cout << "Exit is " << bfs->GetDepth() << " rooms away." << endl;
 			delete bfs;
 		}
 		else if (choice == "handgrenade" || choice == "h")

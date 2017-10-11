@@ -1,7 +1,6 @@
 #pragma once
 
 #include <queue>
-#include <set>
 #include "Room.h"
 #include "Dungeon.h"
 #include "BFSTree.h"
@@ -16,6 +15,6 @@ private:
 
 public:
 	~BFS();
-	void BreathFirstSearch(Dungeon*);
-	//int GetSetDepth();
+	void BreathFirstSearch(int, int, Dungeon*);
+	int GetDepth();
 };

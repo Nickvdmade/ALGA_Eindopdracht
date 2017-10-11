@@ -14,4 +14,5 @@ public:
 	BFSNode(Room*);
 	~BFSNode();
 	bool Addnode(Room*);
+	int GetDepth();
 };

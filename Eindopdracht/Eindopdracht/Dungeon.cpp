@@ -125,6 +125,11 @@ Room* Dungeon::FindEnd()
 				return rooms[y][x];
 }
 
+Room* Dungeon::FindPosition(int y, int x) const
+{
+	return rooms[y][x];
+}
+
 void Dungeon::Print() const
 {
 	for (int y = 0; y < ySize * 2; y++)

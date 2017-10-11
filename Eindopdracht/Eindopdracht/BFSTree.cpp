@@ -20,3 +20,8 @@ void BFSTree::AddNode(Room* room)
 		root = node;
 	}
 }
+
+int BFSTree::GetDepth()
+{
+	return root->GetDepth() - 1;
+}

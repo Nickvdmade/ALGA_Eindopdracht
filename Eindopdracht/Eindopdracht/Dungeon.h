@@ -17,5 +17,6 @@ public:
 	Room* FindStart();
 	void SwapEnd(int, int);
 	Room* FindEnd();
+	Room* FindPosition(int, int) const;
 	void Print() const;
 };

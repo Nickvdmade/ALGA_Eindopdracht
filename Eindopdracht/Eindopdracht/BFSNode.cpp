@@ -28,3 +28,17 @@ bool BFSNode::Addnode(Room* nodeRoom)
 	}
 	return done;
 }
+
+int BFSNode::GetDepth()
+{
+	vector<int> heights;
+	for (int i = 0; i < nodes.size(); i++)
+	{
+		heights.push_back(nodes[i]->GetDepth());
+	}
+	int height = 0;
+	for (int i = 0; i < heights.size(); i++)
+		if (heights[i] > height)
+			height = heights[i];
+	return height + 1;
+}
