@@ -15,19 +15,22 @@ private:
 	char type;
 	bool visited;
 	bool shortPath;
+	
+public:
 	Room* north;
 	Room* east;
 	Room* south;
 	Room* west;
 
-public:
 	Room(char);
-	void AddNeighbours(Room* neighbours[4]);
-	char GetType();
+	void AddNeighbours(Room*[4]);
+	bool HasNeighbour(Room*) const;
+	char GetType() const;
 	void SetType(char);
-	int GetWeight();
+	int GetWeight() const;
 	void SetWeight(int);
 	void Visited();
+	bool IsVisited() const;
 	void ShortPath();
 	void Print() const;
 	void PrintRight() const;

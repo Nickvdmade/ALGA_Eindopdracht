@@ -13,7 +13,7 @@ Dungeon::~Dungeon()
 {
 	for (int y = 0; y < ySize; y++)
 		for (int x = 0; x < xSize; x++)
-			delete rooms[x][y];
+			delete rooms[y][x];
 	for (int y = 0; y < ySize; y++)
 		delete rooms[y];
 	delete rooms;
@@ -26,14 +26,12 @@ void Dungeon::FillDungeon() const
 			if (y == 0 && x == 0)
 			{
 				rooms[y][x] = new Room('S');
-				rooms[y][x]->Visited();
 			}
 			else
 			{
 				if (y == ySize - 1 && x == xSize - 1)
 				{
 					rooms[y][x] = new Room('E');
-					rooms[y][x]->ShortPath();
 				}
 				else
 					rooms[y][x] = new Room('D');
@@ -108,8 +106,10 @@ Room* Dungeon::FindStart()
 
 void Dungeon::SwapEnd(int y, int x)
 {
+	y--;
+	x--;
 	int weight = rooms[y][x]->GetWeight();
-	int type = rooms[y][x]->GetType();
+	char type = rooms[y][x]->GetType();
 	Room* end = FindEnd();
 	rooms[y][x]->SetWeight(0);
 	rooms[y][x]->SetType('E');

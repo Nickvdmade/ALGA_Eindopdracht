@@ -118,11 +118,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BFS.cpp" />
+    <ClCompile Include="BFSNode.cpp" />
+    <ClCompile Include="BFSTree.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Room.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BFS.h" />
+    <ClInclude Include="BFSNode.h" />
+    <ClInclude Include="BFSTree.h" />
     <ClInclude Include="ColourCodes.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="Room.h" />

@@ -18,7 +18,15 @@ void Room::AddNeighbours(Room* neighbours[4])
 	west = neighbours[3];
 }
 
-char Room::GetType()
+bool Room::HasNeighbour(Room* room) const
+{
+	if (room == north || room == east || room == south || room == west)
+		return true;
+	return false;
+}
+
+
+char Room::GetType() const
 {
 	return type;
 }
@@ -28,7 +36,7 @@ void Room::SetType(char roomType)
 	type = roomType;
 }
 
-int Room::GetWeight()
+int Room::GetWeight() const
 {
 	return weight;
 }
@@ -41,6 +49,11 @@ void Room::SetWeight(int roomWeight)
 void Room::Visited()
 {
 	visited = true;
+}
+
+bool Room::IsVisited() const
+{
+	return visited;
 }
 
 void Room::ShortPath()

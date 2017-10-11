@@ -1,4 +1,5 @@
 #include "Dungeon.h"
+#include "BFS.h"
 
 void ShowUI(Dungeon* dungeon)
 {
@@ -33,7 +34,7 @@ void ShowUI(Dungeon* dungeon)
 
 void main()
 {
-	Dungeon* dungeon = new Dungeon(4,4);
+	Dungeon* dungeon = new Dungeon(4,7);
 	dungeon->FillDungeon();
 	
 	string choice = "";
@@ -44,6 +45,10 @@ void main()
 		if (choice == "talisman" || choice == "t")
 		{
 			cout << "talisman used" << endl;
+			dungeon->SwapEnd(4, 4);
+			BFS* bfs = new BFS();
+			bfs->BreathFirstSearch(dungeon);
+			delete bfs;
 		}
 		else if (choice == "handgrenade" || choice == "h")
 		{
