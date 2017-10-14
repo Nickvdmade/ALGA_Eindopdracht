@@ -1,5 +1,33 @@
+#include <sstream>
 #include "Dungeon.h"
 #include "BFS.h"
+
+Dungeon* initDungeon()
+{
+	string input = "";
+	int x = 4, y = 4;
+	cout << "Would you like to determine the size of the dungeon? <yes/no>" << endl;
+	cout << "-> ";
+	getline(cin, input);
+	if (input == "yes" || input == "y")
+	{
+		cout << "Please enter first digit:" << endl;
+		cout << "-> ";
+		getline(cin, input);
+		stringstream(input) >> x;
+		cout << endl;
+		cout << "Please enter second digit:" << endl;
+		cout << "-> ";
+		getline(cin, input);
+		stringstream(input) >> y;
+	}
+	cout << "Creating dungeon of size " << x << " by " << y << endl;
+	cout << "press enter to continue";
+	getchar();
+
+	Dungeon* dungeon = new Dungeon(x, y);
+	return dungeon;
+}
 
 void ShowUI(Dungeon* dungeon)
 {
@@ -34,7 +62,8 @@ void ShowUI(Dungeon* dungeon)
 
 void main()
 {
-	Dungeon* dungeon = new Dungeon(8,8);
+	cout << "Welcome to the Dungeon game." << endl;
+	Dungeon* dungeon = initDungeon();
 	dungeon->FillDungeon();
 	
 	string choice = "";
@@ -46,7 +75,7 @@ void main()
 		{
 			cout << "talisman used" << endl;
 			BFS* bfs = new BFS();
-			bfs->BreathFirstSearch(0,7, dungeon);
+			bfs->BreathFirstSearch(0,0, dungeon);
 			cout << "Exit is " << bfs->GetDepth() << " rooms away." << endl;
 			delete bfs;
 		}
@@ -64,7 +93,6 @@ void main()
 		}
 		cout << "press enter to continue";
 		getchar();
-		
 	}
 
 	delete dungeon;
