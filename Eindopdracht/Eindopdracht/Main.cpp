@@ -9,7 +9,7 @@ Dungeon* InitDungeon()
 
 	while (x < 2 || x > 10)
 	{
-		cout << "Please enter width of dungeon:" << endl;
+		cout << "Please enter width of dungeon: <min = 2, max = 10>" << endl;
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> x;
@@ -17,7 +17,7 @@ Dungeon* InitDungeon()
 
 	while (y < 2 || y > 10)
 	{
-		cout << "Please enter height of dungeon:" << endl;
+		cout << "Please enter height of dungeon: <min = 2, max = 10>" << endl;
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> y;
@@ -69,7 +69,7 @@ void SwapEnd(Dungeon* dungeon) {
 	dungeon->SwapEnd(y, x);
 }
 
-void ShowUI(Dungeon* dungeon)
+void ShowUI(Dungeon* dungeon, string message)
 {
 	system("cls");
 	HANDLE hConsole;
@@ -91,6 +91,7 @@ void ShowUI(Dungeon* dungeon)
 	cout << "- White room: Normal room" << endl;
 	cout << endl;
 	dungeon->Print();
+	cout << message << endl;
 	cout << "You have the following choices:" << endl;
 	cout << "- talisman" << endl;
 	cout << "- handgrenade" << endl;
@@ -146,16 +147,17 @@ void main()
 	
 	//start
 	string choice = "";
+	string message = "";
 	while (choice != "quit" && choice != "q")
 	{
-		ShowUI(dungeon);
+		ShowUI(dungeon, message);
 		getline(cin, choice);
 		if (choice == "talisman" || choice == "t")
 		{
 			cout << "talisman used" << endl;
 			BFS* bfs = new BFS();
 			bfs->BreathFirstSearch(0,0, dungeon);
-			cout << "Exit is " << bfs->GetDepth() << " rooms away." << endl;
+			//message = "Exit is " + bfs->GetDepth().toString() + " rooms away.";
 			delete bfs;
 		}
 		else if (choice == "handgrenade" || choice == "h")
