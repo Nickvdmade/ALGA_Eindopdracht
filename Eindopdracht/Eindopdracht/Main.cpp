@@ -6,16 +6,22 @@ Dungeon* InitDungeon()
 {
 	string input = "";
 	int x = 0, y = 0;
-	cout << "Please enter width of dungeon:" << endl;
-	cout << "-> ";
-	getline(cin, input);
-	stringstream(input) >> x;
-	cout << endl;
 
-	cout << "Please enter height of dungeon:" << endl;
-	cout << "-> ";
-	getline(cin, input);
-	stringstream(input) >> y;
+	while (x < 2 || x > 10)
+	{
+		cout << "Please enter width of dungeon:" << endl;
+		cout << "-> ";
+		getline(cin, input);
+		stringstream(input) >> x;
+	}
+
+	while (y < 2 || y > 10)
+	{
+		cout << "Please enter height of dungeon:" << endl;
+		cout << "-> ";
+		getline(cin, input);
+		stringstream(input) >> y;
+	}
 
 	Dungeon* dungeon = new Dungeon(y, x);
 	return dungeon;
@@ -31,7 +37,6 @@ void SwapStart(Dungeon* dungeon) {
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> x;
-		cout << endl;
 	}
 	while (y < 1 || y > dungeon->getHeight())
 	{
@@ -53,7 +58,6 @@ void SwapEnd(Dungeon* dungeon) {
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> x;
-		cout << endl;
 	}
 	while (y < 1 || y > dungeon->getHeight())
 	{
