@@ -2,31 +2,67 @@
 #include "Dungeon.h"
 #include "BFS.h"
 
-Dungeon* initDungeon()
+Dungeon* InitDungeon()
 {
 	string input = "";
-	int x = 4, y = 4;
-	cout << "Would you like to determine the size of the dungeon? <yes/no>" << endl;
+	int x = 0, y = 0;
+	cout << "Please enter width of dungeon:" << endl;
 	cout << "-> ";
 	getline(cin, input);
-	if (input == "yes" || input == "y")
+	stringstream(input) >> x;
+	cout << endl;
+
+	cout << "Please enter height of dungeon:" << endl;
+	cout << "-> ";
+	getline(cin, input);
+	stringstream(input) >> y;
+
+	Dungeon* dungeon = new Dungeon(y, x);
+	return dungeon;
+}
+
+void SwapStart(Dungeon* dungeon) {
+	string input = "";
+	int x = 0, y = 0;
+	
+	while (x < 1 || x > dungeon->getWidth()) 
 	{
 		cout << "Please enter first digit:" << endl;
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> x;
 		cout << endl;
+	}
+	while (y < 1 || y > dungeon->getHeight())
+	{
 		cout << "Please enter second digit:" << endl;
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> y;
 	}
-	cout << "Creating dungeon of size " << x << " by " << y << endl;
-	cout << "press enter to continue";
-	getchar();
+	dungeon->SwapStart(y, x);
+}
 
-	Dungeon* dungeon = new Dungeon(x, y);
-	return dungeon;
+void SwapEnd(Dungeon* dungeon) {
+	string input = "";
+	int x = 0, y = 0;
+
+	while (x < 1 || x > dungeon->getWidth())
+	{
+		cout << "Please enter first digit:" << endl;
+		cout << "-> ";
+		getline(cin, input);
+		stringstream(input) >> x;
+		cout << endl;
+	}
+	while (y < 1 || y > dungeon->getHeight())
+	{
+		cout << "Please enter second digit:" << endl;
+		cout << "-> ";
+		getline(cin, input);
+		stringstream(input) >> y;
+	}
+	dungeon->SwapEnd(y, x);
 }
 
 void ShowUI(Dungeon* dungeon)
@@ -62,10 +98,49 @@ void ShowUI(Dungeon* dungeon)
 
 void main()
 {
+	//init
 	cout << "Welcome to the Dungeon game." << endl;
-	Dungeon* dungeon = initDungeon();
+	Dungeon* dungeon;
+
+	string input = "";
+	cout << "Would you like to determine the size of the dungeon? <yes/no>" << endl;
+	cout << "-> ";
+	getline(cin, input);
+	if (input == "yes" || input == "y")
+		dungeon = InitDungeon();
+	else
+		dungeon = new Dungeon(8, 8);
+
 	dungeon->FillDungeon();
+	cout << "press enter to continue";
+	getchar();
 	
+	//swap start
+	system("cls");
+	cout << "Dungeon:" << endl;
+	dungeon->Print();
+
+	cout << "Would you like to swap the start of the dungeon? <yes / no>" << endl;
+	cout << "-> ";
+	getline(cin, input);
+	if (input == "yes" || input == "y")
+		SwapStart(dungeon);
+	system("cls");
+	cout << "Dungeon:" << endl;
+	dungeon->Print();
+
+	//swap end
+	cout << "Would you like to swap the end of the dungeon? <yes / no>" << endl;
+	cout << "-> ";
+	getline(cin, input);
+	if (input == "yes" || input == "y")
+		SwapEnd(dungeon);
+	system("cls");
+	cout << "Dungeon:" << endl;
+	dungeon->Print();
+	cout << "press enter to continue";
+	
+	//start
 	string choice = "";
 	while (choice != "quit" && choice != "q")
 	{
