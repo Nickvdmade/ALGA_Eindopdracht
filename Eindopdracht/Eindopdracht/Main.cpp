@@ -112,6 +112,7 @@ void ShowUI(Dungeon* dungeon, string message)
 void main()
 {
 	//init
+	SetColour(bWhite);
 	cout << "Welcome to the Dungeon game." << endl;
 	Dungeon* dungeon;
 
@@ -156,16 +157,36 @@ void main()
 	string choice = "";
 	string message = "";
 	BFS* bfs = new BFS();
+	//Room* currentLocation = dungeon->FindStart();
+
 	while (choice != "quit" && choice != "q")
 	{
 		ShowUI(dungeon, message);
 		getline(cin, choice);
 		if (choice == "talisman" || choice == "t")
 		{
-			bfs->BreathFirstSearch(0,0, dungeon);
-			stringstream ss;
-			ss << "Talisman used, exit is " << bfs->GetDepth() << " rooms away.";
-			message = ss.str();
+			string input = "";
+			int x = 0, y = 0;
+			while (x < 1 || x > dungeon->getWidth())
+			{
+				cout << "Please enter first digit: (between 1 and " << dungeon->getWidth() << ")" << endl;
+				cout << "-> ";
+				getline(cin, input);
+				stringstream(input) >> x;
+			}
+			while (y < 1 || y > dungeon->getHeight())
+			{
+				cout << "Please enter second digit: (between 1 and " << dungeon->getHeight() << ")" << endl;
+				cout << "-> ";
+				getline(cin, input);
+				stringstream(input) >> y;
+			}
+			/*	Find coordinates of currentLocation in dungeon
+				pass coordinates to bfssearch
+			*/
+			bfs->BreathFirstSearch(y, x, dungeon);
+			message = "Talisman used, exit is " + to_string(bfs->GetDepth()) + " rooms away.";
+			
 		}
 		else if (choice == "handgrenade" || choice == "h")
 		{

@@ -7,19 +7,23 @@ BFS::~BFS()
 
 void BFS::BreathFirstSearch(int y, int x, Dungeon* dungeon)
 {
-	Room* startPosition = dungeon->FindPosition(y, x);
+	dungeon->ClearVisited();
+	ClearQueue();
+	if (visited != nullptr)
+		delete visited;
+	Room* startPosition = dungeon->FindPosition(y - 1, x - 1);
 	if (!startPosition->IsVisited())
 	{
 		roomQueue.push_back(startPosition);
 		visited = new BFSTree();
-		startPosition->Visited();
+		startPosition->SetVisited(true);
 		Room* end = dungeon->FindEnd();
 		while (roomQueue.back() != end)
 		{
 			Room* room = *roomQueue.begin();
 			roomQueue.pop_front();
 			visited->AddNode(room);
-			room->Visited();
+			room->SetVisited(true);
 
 			if (room->north != nullptr && !room->north->IsVisited() && find(roomQueue.begin(), roomQueue.end(), room->north) == roomQueue.end())
 			{
@@ -47,11 +51,16 @@ void BFS::BreathFirstSearch(int y, int x, Dungeon* dungeon)
 			}
 		}
 		visited->AddNode(end);
-		end->Visited();
+		end->SetVisited(true);
 	}
 }
 
 int BFS::GetDepth()
 {
 	return visited->GetDepth();
+}
+
+void BFS::ClearQueue()
+{
+	roomQueue.clear();
 }

@@ -46,9 +46,9 @@ void Room::SetWeight(int roomWeight)
 	weight = roomWeight;
 }
 
-void Room::Visited()
+void Room::SetVisited(bool visit)
 {
-	visited = true;
+	visited = visit;
 }
 
 bool Room::IsVisited() const

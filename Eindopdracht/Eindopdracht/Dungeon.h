@@ -21,4 +21,5 @@ public:
 	void Print() const;
 	int getWidth();
 	int getHeight();
+	void ClearVisited();
 };

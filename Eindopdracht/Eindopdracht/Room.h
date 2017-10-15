@@ -29,7 +29,7 @@ public:
 	void SetType(char);
 	int GetWeight() const;
 	void SetWeight(int);
-	void Visited();
+	void SetVisited(bool);
 	bool IsVisited() const;
 	void ShortPath();
 	void Print() const;

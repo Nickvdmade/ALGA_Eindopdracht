@@ -162,3 +162,10 @@ int Dungeon::getHeight()
 {
 	return ySize;
 }
+
+void Dungeon::ClearVisited()
+{
+	for (int y = 0; y < getHeight(); y++)
+		for (int x = 0; x < getWidth(); x++)
+			rooms[y][x]->SetVisited(false);
+}
