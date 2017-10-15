@@ -2,6 +2,13 @@
 #include "Dungeon.h"
 #include "BFS.h"
 
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+void SetColour(int colour)
+{
+	SetConsoleTextAttribute(hConsole, colour);
+}
+
 Dungeon* InitDungeon()
 {
 	string input = "";
@@ -9,7 +16,10 @@ Dungeon* InitDungeon()
 
 	while (x < 2 || x > 10)
 	{
-		cout << "Please enter width of dungeon: <min = 2, max = 10>" << endl;
+		cout << "Please enter width of dungeon:";
+		SetColour(bRed);
+		cout << " <min = 2, max = 10>" << endl;
+		SetColour(bWhite);
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> x;
@@ -17,7 +27,10 @@ Dungeon* InitDungeon()
 
 	while (y < 2 || y > 10)
 	{
-		cout << "Please enter height of dungeon: <min = 2, max = 10>" << endl;
+		cout << "Please enter height of dungeon:";
+		SetColour(bRed);
+		cout << " <min = 2, max = 10>" << endl;
+		SetColour(bWhite);
 		cout << "-> ";
 		getline(cin, input);
 		stringstream(input) >> y;
@@ -72,26 +85,21 @@ void SwapEnd(Dungeon* dungeon) {
 void ShowUI(Dungeon* dungeon, string message)
 {
 	system("cls");
-	HANDLE hConsole;
-	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	int colour = bWhite;
-	SetConsoleTextAttribute(hConsole, colour);
+	SetColour(bWhite);
 	cout << "Legend:" << endl;
-	colour = bBlue;
-	SetConsoleTextAttribute(hConsole, colour);
+	SetColour(bBlue);
 	cout << "- Blue room: Visited room" << endl;
-	colour = bRed;
-	SetConsoleTextAttribute(hConsole, colour);
+	SetColour(bRed);
 	cout << "- Red room: Room is part of shortest path" << endl;
-	colour = bPurple;
-	SetConsoleTextAttribute(hConsole, colour);
+	SetColour(bPurple);
 	cout << "- Purple room: Room is visited and part of shortest path" << endl;
-	colour = bWhite;
-	SetConsoleTextAttribute(hConsole, colour);
+	SetColour(bWhite);
 	cout << "- White room: Normal room" << endl;
 	cout << endl;
 	dungeon->Print();
-	cout << message << endl;
+	SetColour(bGreen);
+	cout << message << endl << endl;
+	SetColour(bWhite);
 	cout << "You have the following choices:" << endl;
 	cout << "- talisman" << endl;
 	cout << "- handgrenade" << endl;
@@ -115,7 +123,6 @@ void main()
 		dungeon = InitDungeon();
 	else
 		dungeon = new Dungeon(8, 8);
-
 	dungeon->FillDungeon();
 	cout << "press enter to continue";
 	getchar();
@@ -154,26 +161,25 @@ void main()
 		getline(cin, choice);
 		if (choice == "talisman" || choice == "t")
 		{
-			cout << "talisman used" << endl;
 			BFS* bfs = new BFS();
 			bfs->BreathFirstSearch(0,0, dungeon);
-			//message = "Exit is " + bfs->GetDepth().toString() + " rooms away.";
+			stringstream ss;
+			ss << "Talisman used, exit is " << bfs->GetDepth() << " rooms away.";
+			message = ss.str();
 			delete bfs;
 		}
 		else if (choice == "handgrenade" || choice == "h")
 		{
-			cout << "handgrenade used" << endl;
+			message = "Handgrenade used";
 		}
 		else if (choice == "compass" || choice == "c")
 		{
-			cout << "compass used" << endl;
+			message = "Compass used";
 		}
 		else if(choice != "quit" && choice != "q")
 		{
-			cout << "invalid input" << endl;
+			message = "Invalid input";
 		}
-		cout << "press enter to continue";
-		getchar();
 	}
 
 	delete dungeon;
