@@ -155,10 +155,10 @@ void Dungeon::Print() const
 
 int Dungeon::getWidth() 
 {
-	return ySize;
+	return xSize;
 }
 
 int Dungeon::getHeight() 
 {
-	return xSize;
+	return ySize;
 }

@@ -152,21 +152,20 @@ void main()
 	dungeon->Print();
 	cout << "press enter to continue";
 	
-	//start
+	//start game
 	string choice = "";
 	string message = "";
+	BFS* bfs = new BFS();
 	while (choice != "quit" && choice != "q")
 	{
 		ShowUI(dungeon, message);
 		getline(cin, choice);
 		if (choice == "talisman" || choice == "t")
 		{
-			BFS* bfs = new BFS();
 			bfs->BreathFirstSearch(0,0, dungeon);
 			stringstream ss;
 			ss << "Talisman used, exit is " << bfs->GetDepth() << " rooms away.";
 			message = ss.str();
-			delete bfs;
 		}
 		else if (choice == "handgrenade" || choice == "h")
 		{
@@ -182,6 +181,7 @@ void main()
 		}
 	}
 
+	delete bfs;
 	delete dungeon;
 
 	_CrtDumpMemoryLeaks();
