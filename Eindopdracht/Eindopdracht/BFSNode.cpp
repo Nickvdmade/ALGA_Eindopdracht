@@ -13,20 +13,17 @@ BFSNode::~BFSNode()
 	}
 }
 
-bool BFSNode::AddNode(Room* nodeRoom)
+void BFSNode::AddNode(Room* nodeRoom)
 {
 	if (room->HasNeighbour(nodeRoom))
 	{
 		BFSNode* node = new BFSNode(nodeRoom);
 		nodes.push_back(node);
-		return true;
 	}
-	bool done = false;
 	for (int i = 0; i < nodes.size(); i++)
 	{
-		done = nodes[i]->AddNode(nodeRoom);
+		nodes[i]->AddNode(nodeRoom);
 	}
-	return done;
 }
 
 int BFSNode::GetDepth()

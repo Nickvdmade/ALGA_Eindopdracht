@@ -25,6 +25,7 @@ public:
 	Room(char);
 	void AddNeighbours(Room*[4]);
 	bool HasNeighbour(Room*) const;
+	void DeleteNeighbour(Room*);
 	char GetType() const;
 	void SetType(char);
 	int GetWeight() const;

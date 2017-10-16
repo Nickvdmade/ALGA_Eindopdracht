@@ -25,6 +25,29 @@ bool Room::HasNeighbour(Room* room) const
 	return false;
 }
 
+void Room::DeleteNeighbour(Room* room)
+{
+	if (north == room && north != nullptr)
+	{
+		north->south = nullptr;
+		north = nullptr;
+	}
+	if (east == room && east != nullptr)
+	{
+		east->west = nullptr;
+		east = nullptr;
+	}
+	if (south == room && south != nullptr)
+	{
+		south->north = nullptr;
+		south = nullptr;
+	}
+	if (west == room && west != nullptr)
+	{
+		west->east = nullptr;
+		west = nullptr;
+	}
+}
 
 char Room::GetType() const
 {

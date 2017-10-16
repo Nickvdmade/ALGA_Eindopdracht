@@ -1,6 +1,7 @@
 #include <sstream>
 #include "Dungeon.h"
 #include "BFS.h"
+#include "MST.h"
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -157,6 +158,7 @@ void main()
 	string choice = "";
 	string message = "";
 	BFS* bfs = new BFS();
+	MST* mst = new MST();
 	//Room* currentLocation = dungeon->FindStart();
 
 	while (choice != "quit" && choice != "q")
@@ -190,7 +192,12 @@ void main()
 		}
 		else if (choice == "handgrenade" || choice == "h")
 		{
-			message = "Handgrenade used";
+			mst->GenerateMinimumSpanningTree(dungeon);
+			int collapseAmount = mst->HandGrenade(dungeon);
+			if (collapseAmount != 0)
+				message = "Handgrenade used, several corridors have collapsed.";
+			else
+				message = "Handgrenade can't be used, crucial corridors would collapse.";
 		}
 		else if (choice == "compass" || choice == "c")
 		{
@@ -203,6 +210,7 @@ void main()
 	}
 
 	delete bfs;
+	delete mst;
 	delete dungeon;
 
 	_CrtDumpMemoryLeaks();

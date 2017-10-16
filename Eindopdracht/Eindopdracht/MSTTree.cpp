@@ -13,10 +13,23 @@ MSTTree::~MSTTree()
 void MSTTree::AddNode(Room* room)
 {
 	if (root != nullptr)
-		root->AddNode(room);
+	{
+		if (!root->HasNode(room))
+			root->AddNode(room);
+	}
 	else
 	{
 		MSTNode* node = new MSTNode(room);
 		root = node;
 	}
+}
+
+bool MSTTree::HasNode(Room* room) const
+{
+	return root->HasNode(room);
+}
+
+bool MSTTree::HasConnection(Room* startRoom, Room* endRoom) const
+{
+	return root->HasConnection(startRoom, endRoom);
 }

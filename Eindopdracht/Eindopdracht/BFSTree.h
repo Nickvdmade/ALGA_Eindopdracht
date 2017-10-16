@@ -11,5 +11,5 @@ public:
 	BFSTree();
 	~BFSTree();
 	void AddNode(Room*);
-	int GetDepth();
+	int GetDepth() const;
 };

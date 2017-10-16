@@ -153,17 +153,17 @@ void Dungeon::Print() const
 	}
 }
 
-int Dungeon::getWidth() 
+int Dungeon::getWidth() const
 {
 	return xSize;
 }
 
-int Dungeon::getHeight() 
+int Dungeon::getHeight() const
 {
 	return ySize;
 }
 
-void Dungeon::ClearVisited()
+void Dungeon::ClearVisited() const
 {
 	for (int y = 0; y < getHeight(); y++)
 		for (int x = 0; x < getWidth(); x++)

@@ -19,3 +19,8 @@ Room* MSTCorridor::GetEndRoom() const
 {
 	return endRoom;
 }
+
+void MSTCorridor::Collapse() const
+{
+	startRoom->DeleteNeighbour(endRoom);
+}

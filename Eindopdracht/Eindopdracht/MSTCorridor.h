@@ -13,5 +13,6 @@ public:
 	~MSTCorridor();
 	int GetWeight() const;
 	Room* GetEndRoom() const;
+	void Collapse() const;
 };
 

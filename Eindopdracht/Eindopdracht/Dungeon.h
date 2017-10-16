@@ -19,7 +19,7 @@ public:
 	Room* FindEnd();
 	Room* FindPosition(int, int) const;
 	void Print() const;
-	int getWidth();
-	int getHeight();
-	void ClearVisited();
+	int getWidth() const;
+	int getHeight() const;
+	void ClearVisited() const;
 };

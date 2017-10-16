@@ -12,4 +12,7 @@ public:
 	MSTNode(Room*);
 	~MSTNode();
 	void AddNode(Room*);
+	bool HasNode(Room*) const;
+	bool HasConnection(Room*, Room*) const;
+	Room* GetRoom() const;
 };

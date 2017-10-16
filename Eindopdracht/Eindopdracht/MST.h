@@ -9,9 +9,12 @@ class MST
 private:
 	MSTTree* prim;
 	vector<MSTCorridor*> queue;
+	vector<MSTCorridor*> collapse;
 
 public:
 	MST();
 	~MST();
 	void GenerateMinimumSpanningTree(Dungeon*);
+	int HandGrenade(Dungeon*);
+	void AddToQueue(Room*);
 };
