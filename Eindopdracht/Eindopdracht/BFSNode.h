@@ -13,6 +13,6 @@ private:
 public:
 	BFSNode(Room*);
 	~BFSNode();
-	bool Addnode(Room*);
+	bool AddNode(Room*);
 	int GetDepth();
 };

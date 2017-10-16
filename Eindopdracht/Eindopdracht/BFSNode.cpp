@@ -13,7 +13,7 @@ BFSNode::~BFSNode()
 	}
 }
 
-bool BFSNode::Addnode(Room* nodeRoom)
+bool BFSNode::AddNode(Room* nodeRoom)
 {
 	if (room->HasNeighbour(nodeRoom))
 	{
@@ -24,7 +24,7 @@ bool BFSNode::Addnode(Room* nodeRoom)
 	bool done = false;
 	for (int i = 0; i < nodes.size(); i++)
 	{
-		done = nodes[i]->Addnode(nodeRoom);
+		done = nodes[i]->AddNode(nodeRoom);
 	}
 	return done;
 }

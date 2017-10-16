@@ -13,7 +13,7 @@ BFSTree::~BFSTree()
 void BFSTree::AddNode(Room* room)
 {
 	if (root != nullptr)
-		root->Addnode(room);
+		root->AddNode(room);
 	else
 	{
 		BFSNode* node = new BFSNode(room);
