@@ -17,4 +17,5 @@ public:
 	~BFS();
 	void BreathFirstSearch(int, int, Dungeon*);
 	int GetDepth();
+	void ClearQueue();
 };

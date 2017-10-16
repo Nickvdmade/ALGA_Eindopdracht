@@ -87,6 +87,8 @@ void Dungeon::AddNeighbours() const
 
 void Dungeon::SwapStart(int y, int x)
 {
+	y--;
+	x--;
 	int weight = rooms[y][x]->GetWeight();
 	int type = rooms[y][x]->GetType();
 	Room* start = FindStart();
@@ -149,4 +151,21 @@ void Dungeon::Print() const
 		}
 		cout << endl;
 	}
+}
+
+int Dungeon::getWidth() 
+{
+	return xSize;
+}
+
+int Dungeon::getHeight() 
+{
+	return ySize;
+}
+
+void Dungeon::ClearVisited()
+{
+	for (int y = 0; y < getHeight(); y++)
+		for (int x = 0; x < getWidth(); x++)
+			rooms[y][x]->SetVisited(false);
 }
