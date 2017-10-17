@@ -58,22 +58,6 @@ int MST::HandGrenade(Dungeon* dungeon)
 					collapse.push_back(east);
 				}
 			}
-			if (room->south != nullptr)
-			{
-				if (!prim->HasConnection(room, room->south))
-				{
-					MSTCorridor* south = new MSTCorridor(room, room->south);
-					collapse.push_back(south);
-				}
-			}
-			if (room->west != nullptr)
-			{
-				if (!prim->HasConnection(room, room->west))
-				{
-					MSTCorridor* west = new MSTCorridor(room, room->west);
-					collapse.push_back(west);
-				}
-			}
 		}
 	}
 	int collapseAmount = rand() % 6 + 10;

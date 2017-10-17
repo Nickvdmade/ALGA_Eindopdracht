@@ -195,7 +195,7 @@ void main()
 			mst->GenerateMinimumSpanningTree(dungeon);
 			int collapseAmount = mst->HandGrenade(dungeon);
 			if (collapseAmount != 0)
-				message = "Handgrenade used, several corridors have collapsed.";
+				message = "Handgrenade used, " + to_string(collapseAmount) + " corridors have collapsed.";
 			else
 				message = "Handgrenade can't be used, crucial corridors would collapse.";
 		}
