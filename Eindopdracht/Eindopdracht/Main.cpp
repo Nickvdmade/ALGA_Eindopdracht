@@ -2,8 +2,13 @@
 #include "Dungeon.h"
 #include "BFS.h"
 #include "MST.h"
+#include "Dijkstra.h"
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+Dungeon* dungeon;
+BFS* bfs;
+MST* mst;
+Dijkstra* dijkstra;
 
 void SetColour(int colour)
 {
@@ -88,12 +93,10 @@ void ShowUI(Dungeon* dungeon, string message)
 	system("cls");
 	SetColour(bWhite);
 	cout << "Legend:" << endl;
-	SetColour(bBlue);
+	SetColour(bYellow);
 	cout << "- Blue room: Visited room" << endl;
 	SetColour(bRed);
 	cout << "- Red room: Room is part of shortest path" << endl;
-	SetColour(bPurple);
-	cout << "- Purple room: Room is visited and part of shortest path" << endl;
 	SetColour(bWhite);
 	cout << "- White room: Normal room" << endl;
 	cout << endl;
@@ -105,20 +108,22 @@ void ShowUI(Dungeon* dungeon, string message)
 	cout << "- talisman" << endl;
 	cout << "- handgrenade" << endl;
 	cout << "- compass" << endl;
+	cout << "- new dungeon" << endl;
 	cout << "- quit" << endl;
 	cout << endl;
 	cout << "-> ";
 }
 
-void main()
+void InitGame()
 {
+	system("cls");
 	//init
 	SetColour(bWhite);
-	cout << "Welcome to the Dungeon game." << endl;
-	Dungeon* dungeon;
+	cout << "Welcome to the Dungeon game." << endl << endl;
 
 	string input = "";
 	cout << "Would you like to determine the size of the dungeon? <yes/no>" << endl;
+	cout << "Standard size is 8 by 8" << endl << endl;
 	cout << "-> ";
 	getline(cin, input);
 	if (input == "yes" || input == "y")
@@ -128,13 +133,13 @@ void main()
 	dungeon->FillDungeon();
 	cout << "press enter to continue";
 	getchar();
-	
+
 	//swap start
 	system("cls");
 	cout << "Dungeon:" << endl;
 	dungeon->Print();
 
-	cout << "Would you like to swap the start of the dungeon? <yes / no>" << endl;
+	cout << "Would you like to swap the start of the dungeon? <yes / no>" << endl << endl;
 	cout << "-> ";
 	getline(cin, input);
 	if (input == "yes" || input == "y")
@@ -144,7 +149,7 @@ void main()
 	dungeon->Print();
 
 	//swap end
-	cout << "Would you like to swap the end of the dungeon? <yes / no>" << endl;
+	cout << "Would you like to swap the end of the dungeon? <yes / no>" << endl << endl;
 	cout << "-> ";
 	getline(cin, input);
 	if (input == "yes" || input == "y")
@@ -153,13 +158,17 @@ void main()
 	cout << "Dungeon:" << endl;
 	dungeon->Print();
 	cout << "press enter to continue";
-	
+	bfs = new BFS();
+	mst = new MST();
+	dijkstra = new Dijkstra(dungeon->getHeight(), dungeon->getWidth());
+}
+
+void main()
+{
 	//start game
 	string choice = "";
 	string message = "";
-	BFS* bfs = new BFS();
-	MST* mst = new MST();
-	//Room* currentLocation = dungeon->FindStart();
+	InitGame();
 
 	while (choice != "quit" && choice != "q")
 	{
@@ -183,9 +192,6 @@ void main()
 				getline(cin, input);
 				stringstream(input) >> y;
 			}
-			/*	Find coordinates of currentLocation in dungeon
-				pass coordinates to bfssearch
-			*/
 			bfs->BreathFirstSearch(y, x, dungeon);
 			message = "Talisman used, exit is " + to_string(bfs->GetDepth()) + " rooms away.";
 			
@@ -201,7 +207,31 @@ void main()
 		}
 		else if (choice == "compass" || choice == "c")
 		{
-			message = "Compass used";
+			string input = "";
+			int x = 0, y = 0;
+			while (x < 1 || x > dungeon->getWidth())
+			{
+				cout << "Please enter first digit: (between 1 and " << dungeon->getWidth() << ")" << endl;
+				cout << "-> ";
+				getline(cin, input);
+				stringstream(input) >> x;
+			}
+			while (y < 1 || y > dungeon->getHeight())
+			{
+				cout << "Please enter second digit: (between 1 and " << dungeon->getHeight() << ")" << endl;
+				cout << "-> ";
+				getline(cin, input);
+				stringstream(input) >> y;
+			}
+			message = "Compass used, directions are:\n" + dijkstra->ShortestPath(dungeon, y, x) + ".";
+		}
+		else if(choice == "new dungeon" || choice == "n")
+		{
+			delete bfs;
+			delete mst;
+			delete dijkstra;
+			delete dungeon;
+			InitGame();
 		}
 		else if(choice != "quit" && choice != "q")
 		{
@@ -211,7 +241,6 @@ void main()
 
 	delete bfs;
 	delete mst;
+	delete dijkstra;
 	delete dungeon;
-
-	_CrtDumpMemoryLeaks();
 }

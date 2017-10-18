@@ -79,9 +79,9 @@ bool Room::IsVisited() const
 	return visited;
 }
 
-void Room::ShortPath()
+void Room::SetShortPath(bool shortestPath)
 {
-	shortPath = true;
+	shortPath = shortestPath;
 }
 
 void Room::Print() const
@@ -89,11 +89,9 @@ void Room::Print() const
 	HANDLE hConsole;
 	int colour = bWhite;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	if (visited && shortPath)
-		colour = bPurple;
-	else if (visited)
-		colour = bBlue;
-	else if (shortPath)
+	if (visited)
+		colour = bYellow;
+	if (shortPath)
 		colour = bRed;
 	
 	SetConsoleTextAttribute(hConsole, colour);

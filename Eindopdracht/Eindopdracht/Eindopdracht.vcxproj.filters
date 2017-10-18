@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="BFS">
+      <UniqueIdentifier>{85c1c36d-d6a3-4ca1-8489-52016115906d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MST">
+      <UniqueIdentifier>{35c4fb3b-2ec2-44ce-8849-1e0c7d84c823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dijkstra">
+      <UniqueIdentifier>{3bd7354e-a473-4b52-81d8-5dee8c18865a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -25,25 +34,28 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BFS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BFSTree.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>BFS</Filter>
     </ClCompile>
     <ClCompile Include="BFSNode.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>BFS</Filter>
+    </ClCompile>
+    <ClCompile Include="BFSTree.cpp">
+      <Filter>BFS</Filter>
     </ClCompile>
     <ClCompile Include="MST.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MSTTree.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MST</Filter>
     </ClCompile>
     <ClCompile Include="MSTNode.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MST</Filter>
+    </ClCompile>
+    <ClCompile Include="MSTTree.cpp">
+      <Filter>MST</Filter>
+    </ClCompile>
+    <ClCompile Include="Dijkstra.cpp">
+      <Filter>Dijkstra</Filter>
     </ClCompile>
     <ClCompile Include="MSTCorridor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MST</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,25 +69,28 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BFS.h">
-      <Filter>Header Files</Filter>
+      <Filter>BFS</Filter>
     </ClInclude>
     <ClInclude Include="BFSNode.h">
-      <Filter>Header Files</Filter>
+      <Filter>BFS</Filter>
     </ClInclude>
     <ClInclude Include="BFSTree.h">
-      <Filter>Header Files</Filter>
+      <Filter>BFS</Filter>
     </ClInclude>
     <ClInclude Include="MST.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MSTTree.h">
-      <Filter>Header Files</Filter>
+      <Filter>MST</Filter>
     </ClInclude>
     <ClInclude Include="MSTNode.h">
-      <Filter>Header Files</Filter>
+      <Filter>MST</Filter>
+    </ClInclude>
+    <ClInclude Include="MSTTree.h">
+      <Filter>MST</Filter>
+    </ClInclude>
+    <ClInclude Include="Dijkstra.h">
+      <Filter>Dijkstra</Filter>
     </ClInclude>
     <ClInclude Include="MSTCorridor.h">
-      <Filter>Header Files</Filter>
+      <Filter>MST</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

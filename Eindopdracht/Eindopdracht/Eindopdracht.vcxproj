@@ -121,6 +121,7 @@
     <ClCompile Include="BFS.cpp" />
     <ClCompile Include="BFSNode.cpp" />
     <ClCompile Include="BFSTree.cpp" />
+    <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MST.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="BFSNode.h" />
     <ClInclude Include="BFSTree.h" />
     <ClInclude Include="ColourCodes.h" />
+    <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="MST.h" />
     <ClInclude Include="MSTCorridor.h" />

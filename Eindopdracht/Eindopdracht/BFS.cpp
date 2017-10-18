@@ -8,6 +8,7 @@ BFS::~BFS()
 void BFS::BreathFirstSearch(int y, int x, Dungeon* dungeon)
 {
 	dungeon->ClearVisited();
+	dungeon->ClearShortestPath();
 	ClearQueue();
 	if (visited != nullptr)
 		delete visited;
@@ -55,7 +56,7 @@ void BFS::BreathFirstSearch(int y, int x, Dungeon* dungeon)
 	}
 }
 
-int BFS::GetDepth()
+int BFS::GetDepth() const
 {
 	return visited->GetDepth();
 }

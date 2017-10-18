@@ -11,10 +11,11 @@ private:
 	vector<MSTCorridor*> queue;
 	vector<MSTCorridor*> collapse;
 
+	void AddToQueue(Room*);
 public:
 	MST();
 	~MST();
 	void GenerateMinimumSpanningTree(Dungeon*);
 	int HandGrenade(Dungeon*);
-	void AddToQueue(Room*);
+	
 };

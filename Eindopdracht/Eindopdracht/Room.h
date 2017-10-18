@@ -32,7 +32,7 @@ public:
 	void SetWeight(int);
 	void SetVisited(bool);
 	bool IsVisited() const;
-	void ShortPath();
+	void SetShortPath(bool);
 	void Print() const;
 	void PrintRight() const;
 	void PrintDown() const;

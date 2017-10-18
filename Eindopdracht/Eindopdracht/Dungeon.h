@@ -18,8 +18,10 @@ public:
 	void SwapEnd(int, int);
 	Room* FindEnd();
 	Room* FindPosition(int, int) const;
+	int* GetPosition(Room*);
 	void Print() const;
 	int getWidth() const;
 	int getHeight() const;
 	void ClearVisited() const;
+	void ClearShortestPath() const;
 };

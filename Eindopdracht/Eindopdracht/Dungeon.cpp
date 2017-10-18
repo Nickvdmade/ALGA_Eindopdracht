@@ -132,6 +132,19 @@ Room* Dungeon::FindPosition(int y, int x) const
 	return rooms[y][x];
 }
 
+int* Dungeon::GetPosition(Room* room)
+{
+	for (int y = 0; y < ySize; y++)
+		for (int x = 0; x < xSize; x++)
+			if (rooms[y][x] == room)
+			{
+				int * position = new int[2];
+				position[0] = y;
+				position[1] = x;
+				return position;
+			}
+}
+
 void Dungeon::Print() const
 {
 	for (int y = 0; y < ySize * 2; y++)
@@ -168,4 +181,11 @@ void Dungeon::ClearVisited() const
 	for (int y = 0; y < getHeight(); y++)
 		for (int x = 0; x < getWidth(); x++)
 			rooms[y][x]->SetVisited(false);
+}
+
+void Dungeon::ClearShortestPath() const
+{
+	for (int y = 0; y < getHeight(); y++)
+		for (int x = 0; x < getWidth(); x++)
+			rooms[y][x]->SetShortPath(false);
 }

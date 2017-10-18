@@ -13,9 +13,10 @@ private:
 	deque<Room*> roomQueue;
 	BFSTree* visited;
 
+	void ClearQueue();
+
 public:
 	~BFS();
 	void BreathFirstSearch(int, int, Dungeon*);
-	int GetDepth();
-	void ClearQueue();
+	int GetDepth() const;
 };

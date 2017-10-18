@@ -12,6 +12,8 @@ MST::~MST()
 
 void MST::GenerateMinimumSpanningTree(Dungeon* dungeon)
 {
+	dungeon->ClearVisited();
+	dungeon->ClearShortestPath();
 	queue.clear();
 	Room* startRoom = dungeon->FindStart();
 	prim->AddNode(startRoom);
